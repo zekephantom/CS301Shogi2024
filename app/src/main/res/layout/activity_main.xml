@@ -13,21 +13,22 @@
         android:layout_marginLeft="20sp"
         android:layout_marginTop="20sp"
         android:layout_marginBottom="20sp"
-        android:layout_weight="1"
+        android:layout_weight="0"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvWelcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome Shogi!"
-            android:textSize="20sp" />
+            android:text="Welcome to Shogi!"
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/butQuit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Quit" />
+            android:text="Quit"
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -52,7 +53,17 @@
         android:layout_marginTop="20sp"
         android:layout_marginBottom="20sp"
         android:layout_weight="1"
-        android:orientation="vertical"></LinearLayout>
+        android:gravity="bottom|center"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/emptycapturefield"
+            android:layout_width="115dp"
+            android:layout_height="wrap_content"
+            android:scaleX="0.6"
+            android:scaleY="0.6"
+            app:srcCompat="@drawable/empty_capture_field" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
