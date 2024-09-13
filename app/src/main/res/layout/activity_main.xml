@@ -27,8 +27,7 @@
             android:id="@+id/butQuit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Quit"
-            />
+            android:text="Quit" />
     </LinearLayout>
 
     <LinearLayout
@@ -37,7 +36,66 @@
         android:layout_marginTop="20sp"
         android:layout_marginBottom="20sp"
         android:layout_weight="1"
-        android:orientation="vertical"></LinearLayout>
+        android:gravity="center|top"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/ivP2capturedPawn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rotation="180"
+            android:rotationY="0"
+            app:srcCompat="@drawable/empty_piece" />
+
+        <ImageView
+            android:id="@+id/ivP2capturedLance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rotation="180"
+            android:rotationY="0"
+            app:srcCompat="@drawable/empty_piece" />
+
+        <ImageView
+            android:id="@+id/ivP2capturedKnight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rotation="180"
+            android:rotationY="0"
+            app:srcCompat="@drawable/empty_piece" />
+
+        <ImageView
+            android:id="@+id/ivP2capturedSGeneral"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rotation="180"
+            android:rotationY="0"
+            app:srcCompat="@drawable/empty_piece" />
+
+        <ImageView
+            android:id="@+id/ivP2capturedGGeneral"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rotation="180"
+            android:rotationY="0"
+            app:srcCompat="@drawable/empty_piece" />
+
+        <ImageView
+            android:id="@+id/ivP2capturedBishop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rotation="180"
+            android:rotationY="0"
+            app:srcCompat="@drawable/empty_piece" />
+
+        <ImageView
+            android:id="@+id/ivP2capturedRook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rotation="180"
+            android:rotationY="0"
+            app:srcCompat="@drawable/empty_piece" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -56,13 +114,41 @@
         android:gravity="bottom|center"
         android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/emptycapturefield"
-            android:layout_width="115dp"
+        <ImageView
+            android:id="@+id/ivP1capturedRook"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:scaleX="0.6"
-            android:scaleY="0.6"
-            app:srcCompat="@drawable/empty_capture_field" />
+            app:srcCompat="@drawable/empty_piece" />
+        <ImageView
+            android:id="@+id/ivP1capturedBishop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/empty_piece" />
+        <ImageView
+            android:id="@+id/ivP1capturedGGeneral"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/empty_piece" />
+        <ImageView
+            android:id="@+id/ivP1capturedSGeneral"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/empty_piece" />
+        <ImageView
+            android:id="@+id/ivP1capturedKnight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/empty_piece" />
+        <ImageView
+            android:id="@+id/ivP1capturedLance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/empty_piece" />
+        <ImageView
+            android:id="@+id/ivP1capturedPawn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/empty_piece" />
     </LinearLayout>
 
     <LinearLayout
