@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CS301Shogi2024</string>
+    <string name="player_turn">Player 1 Turn</string>
 </resources>
