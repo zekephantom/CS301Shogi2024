@@ -6,11 +6,52 @@
     android:orientation="horizontal">
 
     <LinearLayout
-        android:id="@+id/layoutOne"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_marginLeft="20sp"
+        android:layout_marginTop="20sp"
+        android:layout_marginBottom="20sp"
         android:layout_weight="0.5"
-        android:orientation="horizontal" />
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvWelcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Welcome to Shogi!"
+                android:textSize="16sp" />
+
+            <Switch
+                android:id="@+id/swLanguage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="English/Japanese" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/butQuit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quit" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 
     <edu.up.cs301shogi2024.ShogiBoard
@@ -23,15 +64,63 @@
         android:id="@+id/layoutTwo"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="2.5"
+        android:layout_weight="2"
         android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="46sp"
-            android:text="Timer: 28:38" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20sp"
+            android:layout_marginRight="20sp"
+            android:layout_marginBottom="20sp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center|top"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvP2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="Player 2" />
+
+                <TextView
+                    android:id="@+id/tvP2time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="00:00" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="bottom|center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvP1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="Player 1" />
+
+                <TextView
+                    android:id="@+id/tvP1time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="00:00" />
+            </LinearLayout>
+        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>
