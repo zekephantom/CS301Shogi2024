@@ -71,11 +71,11 @@
 
             <ImageView
                 android:id="@+id/ivP2capturedPawn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                android:layout_height="87dp"
                 android:rotation="180"
                 android:rotationY="0"
-                app:srcCompat="@drawable/empty_piece" />
+                app:srcCompat="@drawable/pawn" />
         </LinearLayout>
 
         <LinearLayout
@@ -83,13 +83,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/ivP2capturedLance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:rotation="180"
-                android:rotationY="0"
-                app:srcCompat="@drawable/empty_piece" />
         </LinearLayout>
 
         <LinearLayout
@@ -99,8 +92,8 @@
 
             <ImageView
                 android:id="@+id/ivP2capturedKnight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                android:layout_height="87dp"
                 android:rotation="180"
                 android:rotationY="0"
                 app:srcCompat="@drawable/empty_piece" />
@@ -113,8 +106,8 @@
 
             <ImageView
                 android:id="@+id/ivP2capturedSGeneral"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                android:layout_height="87dp"
                 android:rotation="180"
                 android:rotationY="0"
                 app:srcCompat="@drawable/empty_piece" />
@@ -127,8 +120,8 @@
 
             <ImageView
                 android:id="@+id/ivP2capturedGGeneral"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                android:layout_height="87dp"
                 android:rotation="180"
                 android:rotationY="0"
                 app:srcCompat="@drawable/empty_piece" />
@@ -141,8 +134,8 @@
 
             <ImageView
                 android:id="@+id/ivP2capturedBishop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                android:layout_height="87dp"
                 android:rotation="180"
                 android:rotationY="0"
                 app:srcCompat="@drawable/empty_piece" />
@@ -155,8 +148,8 @@
 
             <ImageView
                 android:id="@+id/ivP2capturedRook"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                android:layout_height="87dp"
                 android:rotation="180"
                 android:rotationY="0"
                 app:srcCompat="@drawable/empty_piece" />
@@ -252,76 +245,82 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
                         android:background="@drawable/black_border"
-                        android:orientation="horizontal"></LinearLayout>
+                        android:orientation="horizontal"/>
                 </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_height="match_parent">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="87dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/black_border"
+                        android:orientation="horizontal" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/black_border"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ivP2capturedLance"
+                            android:layout_width="87dp"
+                            android:layout_height="87dp"
+                            android:rotation="180"
+                            android:rotationY="0"
+                            app:srcCompat="@drawable/lance" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="87dp"
                         android:layout_weight="1"
                         android:background="@drawable/black_border"
                         android:orientation="horizontal" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="87dp"
                         android:layout_weight="1"
                         android:background="@drawable/black_border"
                         android:orientation="horizontal"></LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="87dp"
                         android:layout_weight="1"
                         android:background="@drawable/black_border"
                         android:orientation="horizontal"></LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="87dp"
                         android:layout_weight="1"
                         android:background="@drawable/black_border"
                         android:orientation="horizontal"></LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="87dp"
                         android:layout_weight="1"
                         android:background="@drawable/black_border"
                         android:orientation="horizontal"></LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="87dp"
                         android:layout_weight="1"
                         android:background="@drawable/black_border"
                         android:orientation="horizontal"></LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@drawable/black_border"
-                        android:orientation="horizontal"></LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@drawable/black_border"
-                        android:orientation="horizontal"></LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="87dp"
                         android:layout_weight="1"
                         android:background="@drawable/black_border"
                         android:orientation="horizontal"></LinearLayout>
@@ -830,8 +829,8 @@
 
             <ImageView
                 android:id="@+id/ivP1capturedRook"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                android:layout_height="87dp"
                 app:srcCompat="@drawable/empty_piece" />
         </LinearLayout>
 
@@ -842,8 +841,8 @@
 
             <ImageView
                 android:id="@+id/ivP1capturedBishop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                android:layout_height="87dp"
                 app:srcCompat="@drawable/empty_piece" />
         </LinearLayout>
 
@@ -854,8 +853,8 @@
 
             <ImageView
                 android:id="@+id/ivP1capturedGGeneral"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                android:layout_height="87dp"
                 app:srcCompat="@drawable/empty_piece" />
         </LinearLayout>
 
@@ -866,8 +865,8 @@
 
             <ImageView
                 android:id="@+id/ivP1capturedSGeneral"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                android:layout_height="87dp"
                 app:srcCompat="@drawable/empty_piece" />
         </LinearLayout>
 
@@ -878,8 +877,8 @@
 
             <ImageView
                 android:id="@+id/ivP1capturedKnight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                android:layout_height="87dp"
                 app:srcCompat="@drawable/empty_piece" />
         </LinearLayout>
 
@@ -890,8 +889,8 @@
 
             <ImageView
                 android:id="@+id/ivP1capturedLance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                android:layout_height="87dp"
                 app:srcCompat="@drawable/empty_piece" />
         </LinearLayout>
 
@@ -902,8 +901,8 @@
 
             <ImageView
                 android:id="@+id/ivP1capturedPawn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                android:layout_height="87dp"
                 app:srcCompat="@drawable/empty_piece" />
         </LinearLayout>
 

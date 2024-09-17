@@ -1,209 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="horizontal">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/layoutOne"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_marginLeft="20sp"
-        android:layout_marginTop="20sp"
-        android:layout_marginBottom="20sp"
-        android:layout_weight="0"
-        android:orientation="vertical">
+        android:layout_weight="1.5"
+        android:orientation="horizontal" />
 
-        <TextView
-            android:id="@+id/tvWelcome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Welcome to Shogi!"
-            android:textSize="16sp" />
 
-        <Button
-            android:id="@+id/butQuit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Quit" />
-    </LinearLayout>
+    <edu.up.cs301shogi2024.ShogiBoard
+        android:id="@+id/shogiBoard"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="4" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/layoutTwo"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_marginTop="20sp"
-        android:layout_marginBottom="20sp"
-        android:layout_weight="0"
-        android:gravity="center|top"
-        android:orientation="vertical">
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20sp"
-        android:layout_marginBottom="20sp"
-        android:layout_weight="8"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/ivP2capturedPawn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:rotation="180"
-            android:rotationY="0"
-            app:srcCompat="@drawable/empty_piece" />
-
-        <ImageView
-            android:id="@+id/ivP2capturedBishop"
-            android:layout_width="wrap_content"
-            android:layout_height="59dp"
-            android:rotation="180"
-            android:rotationY="0"
-            app:srcCompat="@drawable/empty_piece" />
-
-        <ImageView
-            android:id="@+id/ivP2capturedKnight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:rotation="180"
-            android:rotationY="0"
-            app:srcCompat="@drawable/empty_piece" />
-
-        <ImageView
-            android:id="@+id/ivP2capturedGGeneral"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:rotation="180"
-            android:rotationY="0"
-            app:srcCompat="@drawable/empty_piece" />
-
-        <ImageView
-            android:id="@+id/ivP2capturedRook"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:rotation="180"
-            android:rotationY="0"
-            app:srcCompat="@drawable/empty_piece" />
-
-        <ImageView
-            android:id="@+id/ivP2capturedSGeneral"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:rotation="180"
-            android:rotationY="0"
-            app:srcCompat="@drawable/empty_piece" />
-
-        <ImageView
-            android:id="@+id/ivP2capturedLance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:rotation="180"
-            android:rotationY="0"
-            app:srcCompat="@drawable/empty_piece" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20sp"
-        android:layout_marginBottom="20sp"
-        android:layout_weight="0"
-        android:gravity="bottom|center"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/ivP1capturedRook"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/empty_piece" />
-        <ImageView
-            android:id="@+id/ivP1capturedBishop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/empty_piece" />
-        <ImageView
-            android:id="@+id/ivP1capturedGGeneral"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/empty_piece" />
-        <ImageView
-            android:id="@+id/ivP1capturedSGeneral"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/empty_piece" />
-        <ImageView
-            android:id="@+id/ivP1capturedKnight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/empty_piece" />
-        <ImageView
-            android:id="@+id/ivP1capturedLance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/empty_piece" />
-        <ImageView
-            android:id="@+id/ivP1capturedPawn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/empty_piece" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20sp"
-        android:layout_marginRight="20sp"
-        android:layout_marginBottom="20sp"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center|top"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tvP2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="Player 2" />
-
-            <TextView
-                android:id="@+id/tvP2time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="00:00" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="bottom|center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tvP1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="Player 1" />
-
-            <TextView
-                android:id="@+id/tvP1time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="00:00" />
-        </LinearLayout>
-    </LinearLayout>
+        android:layout_weight="1.5"
+        android:orientation="horizontal" />
 
 </LinearLayout>
