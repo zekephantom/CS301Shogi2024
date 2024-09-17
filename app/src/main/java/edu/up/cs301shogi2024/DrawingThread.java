@@ -7,9 +7,9 @@ import android.view.SurfaceHolder;
 
 public class DrawingThread extends Thread {
 
-    private SurfaceHolder surfaceHolder;
+    private final SurfaceHolder surfaceHolder;
     private boolean running = false;
-    private Bitmap pieceBitmap; // Bitmap to be drawn
+    private final Bitmap pieceBitmap; // Bitmap to be drawn
 
     public DrawingThread(SurfaceHolder holder, Bitmap pieceBitmap) {
         this.surfaceHolder = holder;

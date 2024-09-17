@@ -163,7 +163,6 @@
         android:layout_marginTop="20sp"
         android:layout_marginBottom="20sp"
         android:layout_weight="8"
-        android:layout_aspectRatio="1.0"
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
