@@ -5,46 +5,74 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.SurfaceHolder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DrawingThread extends Thread {
-
-    private final SurfaceHolder surfaceHolder;
+    private SurfaceHolder surfaceHolder;
     private boolean running = false;
-    private final Bitmap pieceBitmap; // Bitmap to be drawn
+    private boolean needsRedraw = false;
+    private final Object lock = new Object();
 
-    public DrawingThread(SurfaceHolder holder, Bitmap pieceBitmap) {
+    private List<GamePiece> gamePieces;
+    private List<Bitmap> scaledBitmaps;
+    private float cellWidth;
+    private float cellHeight;
+
+    public DrawingThread(SurfaceHolder holder, List<GamePiece> gamePieces) {
         this.surfaceHolder = holder;
-        this.pieceBitmap = pieceBitmap;
+        this.gamePieces = gamePieces;
+        this.scaledBitmaps = new ArrayList<>();
     }
 
     public void setRunning(boolean isRunning) {
-        this.running = isRunning;
+        synchronized (lock) {
+            this.running = isRunning;
+            if (running) {
+                lock.notify(); // Wake up the thread if it's waiting
+            }
+        }
+    }
+
+    public void requestRedraw() {
+        synchronized (lock) {
+            needsRedraw = true;
+            lock.notify(); // Notify the thread to redraw
+        }
+    }
+
+    public float getCellWidth() {
+        return cellWidth;
+    }
+
+    public float getCellHeight() {
+        return cellHeight;
     }
 
     @Override
     public void run() {
-        Canvas canvas;
-        while (running) {
-            canvas = null;
-            try {
-                // Lock the canvas for drawing
-                canvas = surfaceHolder.lockCanvas();
-                if (canvas != null) {
-                    synchronized (surfaceHolder) {
-                        // Draw the grid and the image
-                        drawGrid(canvas);
+        while (true) {
+            synchronized (lock) {
+                if (!running) {
+                    break; // Exit the loop if not running
+                }
+                if (!needsRedraw) {
+                    try {
+                        lock.wait(); // Wait until notified
+                    } catch (InterruptedException e) {
+                        // Handle interruption
                     }
+                    continue;
                 }
-            } finally {
-                if (canvas != null) {
-                    // Unlock the canvas and post the updates
-                    surfaceHolder.unlockCanvasAndPost(canvas);
-                }
+                needsRedraw = false;
             }
-            // Control the frame rate (optional)
-            try {
-                Thread.sleep(16); // Approximately 60 FPS
-            } catch (InterruptedException e) {
-                // Handle interruption
+
+            Canvas canvas = surfaceHolder.lockCanvas();
+            if (canvas != null) {
+                synchronized (surfaceHolder) {
+                    drawGrid(canvas);
+                }
+                surfaceHolder.unlockCanvasAndPost(canvas);
             }
         }
     }
@@ -57,8 +85,8 @@ public class DrawingThread extends Thread {
         int height = canvas.getHeight();
 
         // Calculate cell size
-        float cellWidth = width / 9f;
-        float cellHeight = height / 9f;
+        cellWidth = width / 9f;
+        cellHeight = height / 9f;
 
         Paint paint = new Paint();
         paint.setColor(android.graphics.Color.BLACK);
@@ -76,22 +104,38 @@ public class DrawingThread extends Thread {
             canvas.drawLine(0, y, width, y, paint);
         }
 
-        // Draw the Bitmap onto the grid at a specific cell
-        int row = 4; // Row index (0-based)
-        int col = 4; // Column index (0-based)
+        // Scale bitmaps if necessary
+        scaleBitmapsIfNeeded();
 
-        // Calculate the position to draw the Bitmap
-        float left = col * cellWidth;
-        float top = row * cellHeight;
+        // Draw all game pieces
+        synchronized (gamePieces) {
+            for (int i = 0; i < gamePieces.size(); i++) {
+                GamePiece piece = gamePieces.get(i);
+                Bitmap scaledBitmap = scaledBitmaps.get(i);
 
-        // Scale the Bitmap to fit the cell
-        Bitmap scaledBitmap = Bitmap.createScaledBitmap(pieceBitmap, (int)cellWidth, (int)cellHeight, true);
+                // Ensure the position is within bounds
+                int row = Math.max(0, Math.min(piece.getRow(), 8));
+                int col = Math.max(0, Math.min(piece.getCol(), 8));
 
-        // Draw the Bitmap on the canvas
-        canvas.drawBitmap(scaledBitmap, left, top, null);
+                // Calculate the position to draw the Bitmap
+                float left = col * cellWidth;
+                float top = row * cellHeight;
 
-        // Recycle the scaled Bitmap if necessary
-        // scaledBitmap.recycle(); // Uncomment if not reusing scaledBitmap
+                // Draw the Bitmap on the canvas
+                canvas.drawBitmap(scaledBitmap, left, top, null);
+            }
+        }
     }
 
+    private void scaleBitmapsIfNeeded() {
+        if (scaledBitmaps.isEmpty() || scaledBitmaps.get(0).getWidth() != (int) cellWidth) {
+            scaledBitmaps.clear();
+            synchronized (gamePieces) {
+                for (GamePiece piece : gamePieces) {
+                    Bitmap scaledBitmap = Bitmap.createScaledBitmap(piece.getBitmap(), (int) cellWidth, (int) cellHeight, true);
+                    scaledBitmaps.add(scaledBitmap);
+                }
+            }
+        }
+    }
 }

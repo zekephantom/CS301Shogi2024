@@ -6,39 +6,62 @@ import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.graphics.Bitmap;
+import java.util.*;
 
 public class ShogiBoard extends SurfaceView implements SurfaceHolder.Callback {
 
     private DrawingThread drawingThread;
-    private final Bitmap pieceBitmap;
+    private List<GamePiece> gamePieces;
 
     public ShogiBoard(Context context, AttributeSet attrs) {
         super(context, attrs);
-        // Register the callback
         getHolder().addCallback(this);
-        pieceBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.pawn);
+
+        // Initialize the list of game pieces
+        gamePieces = new ArrayList<>();
+        loadGamePieces(context);
+    }
+
+    private void loadGamePieces(Context context) {
+        // Load Bitmaps for different pieces
+        Bitmap pawn = BitmapFactory.decodeResource(getResources(), R.drawable.pawn);
+        Bitmap lance = BitmapFactory.decodeResource(getResources(), R.drawable.lance);
+        // Load more bitmaps as needed
+        int targetRow = 6;
+
+        for(int col = 0; col < 9; col++){
+            gamePieces.add(new GamePiece(pawn, targetRow, col));
+        }
+        // Create GamePiece instances and add them to the list
+        gamePieces.add(new GamePiece(lance, 8, 0));
+        gamePieces.add(new GamePiece(lance, 8, 8));
+        //  NOTE: Add more pieces with their initial positions
     }
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        // Start the drawing thread when the surface is created
-        drawingThread = new DrawingThread(getHolder(), pieceBitmap);
+        // Start the drawing thread and pass the list of game pieces
+        drawingThread = new DrawingThread(getHolder(), gamePieces);
         drawingThread.setRunning(true);
         drawingThread.start();
+        drawingThread.requestRedraw(); // Initial draw
     }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-        // Stop the drawing thread when the surface is destroyed
-        boolean retry = true;
-        drawingThread.setRunning(false);
-        while (retry) {
-            try {
-                drawingThread.join();
-                retry = false;
-            } catch (InterruptedException e) {
-                // Retry stopping the thread
+        if (drawingThread != null) {
+            drawingThread.setRunning(false);
+            drawingThread.requestRedraw(); // Wake the thread if waiting
+            boolean retry = true;
+            while (retry) {
+                try {
+                    drawingThread.join();
+                    retry = false;
+                } catch (InterruptedException e) {
+                    // Retry stopping the thread
+                }
             }
+            drawingThread = null;
         }
     }
 
