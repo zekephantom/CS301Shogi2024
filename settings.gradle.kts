@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "CS301Shogi2024"
+rootProject.name = "Shogi2024"
 include(":app")
  
