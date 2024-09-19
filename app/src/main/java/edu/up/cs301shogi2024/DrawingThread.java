@@ -2,7 +2,9 @@ package edu.up.cs301shogi2024;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.SurfaceHolder;
 
 import java.util.ArrayList;
@@ -18,6 +20,8 @@ public class DrawingThread extends Thread {
     private List<Bitmap> scaledBitmaps;
     private float cellWidth;
     private float cellHeight;
+    private float cellDimensions;
+    private float fieldDimensions;
 
     public DrawingThread(SurfaceHolder holder, List<GamePiece> gamePieces) {
         this.surfaceHolder = holder;
@@ -79,30 +83,54 @@ public class DrawingThread extends Thread {
 
     private void drawGrid(Canvas canvas) {
         // Clear the canvas
-        canvas.drawColor(android.graphics.Color.WHITE);
+        canvas.drawColor(Color.WHITE);
 
         int width = canvas.getWidth();
         int height = canvas.getHeight();
 
+
+
         // Calculate cell size
-        cellWidth = width / 9f;
+
+        cellWidth = width / 11f;
         cellHeight = height / 9f;
 
-        Paint paint = new Paint();
-        paint.setColor(android.graphics.Color.BLACK);
-        paint.setStrokeWidth(4);
+
+
+        // uses the value that will make the chess board fit proper while still being squared
+        cellDimensions = Math.min(cellWidth, cellHeight);
+
+        fieldDimensions = cellDimensions*9;
+
+        // debugging
+        Log.i("cellSize", "Cellwidth: "+cellWidth);
+        Log.i("cellSize", "Cellheight: "+cellHeight);
+        Log.i("cellSize", "Celldim: "+cellDimensions);
+
+        Paint paintBorders = new Paint();
+        Paint paintBackground = new Paint();
+        paintBorders.setColor(Color.BLACK);
+        paintBorders.setStrokeWidth(4);
+        paintBackground.setColor(0x5EFF7800);
+
+        // add background color
+        canvas.drawRect(cellDimensions,0, cellDimensions+fieldDimensions, fieldDimensions, paintBackground);
 
         // Draw vertical lines
-        for (int i = 0; i <= 9; i++) {
-            float x = i * cellWidth;
-            canvas.drawLine(x, 0, x, height, paint);
+        for (int i = 1; i <= 10; i++) { // start at 1-10 when adding captured pieces
+            float x = i * cellDimensions;
+            canvas.drawLine(x, 0, x, fieldDimensions, paintBorders);
         }
 
         // Draw horizontal lines
         for (int i = 0; i <= 9; i++) {
-            float y = i * cellHeight;
-            canvas.drawLine(0, y, width, y, paint);
+            float y = i * cellDimensions;
+            canvas.drawLine(cellDimensions, y, cellDimensions+fieldDimensions, y, paintBorders);
         }
+
+        // draw fields for captured pieces
+
+
 
         // Scale bitmaps if necessary
         scaleBitmapsIfNeeded();
@@ -118,21 +146,21 @@ public class DrawingThread extends Thread {
                 int col = Math.max(0, Math.min(piece.getCol(), 8));
 
                 // Calculate the position to draw the Bitmap
-                float left = col * cellWidth;
-                float top = row * cellHeight;
+                float left = col * cellDimensions;
+                float top = row * cellDimensions;
 
                 // Draw the Bitmap on the canvas
-                canvas.drawBitmap(scaledBitmap, left, top, null);
+                canvas.drawBitmap(scaledBitmap, cellDimensions+left, top, null);
             }
         }
     }
 
     private void scaleBitmapsIfNeeded() {
-        if (scaledBitmaps.isEmpty() || scaledBitmaps.get(0).getWidth() != (int) cellWidth) {
+        if (scaledBitmaps.isEmpty() || scaledBitmaps.get(0).getWidth() != (int) cellDimensions) {
             scaledBitmaps.clear();
             synchronized (gamePieces) {
                 for (GamePiece piece : gamePieces) {
-                    Bitmap scaledBitmap = Bitmap.createScaledBitmap(piece.getBitmap(), (int) cellWidth, (int) cellHeight, true);
+                    Bitmap scaledBitmap = Bitmap.createScaledBitmap(piece.getBitmap(), (int) cellDimensions, (int) cellDimensions, true);
                     scaledBitmaps.add(scaledBitmap);
                 }
             }
