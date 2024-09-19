@@ -24,8 +24,19 @@ public class ShogiBoard extends SurfaceView implements SurfaceHolder.Callback {
 
     private void loadGamePieces(Context context) {
         // Load Bitmaps for different pieces
+        Bitmap kinglower = BitmapFactory.decodeResource(getResources(), R.drawable.kinglower);
+        Bitmap rook = BitmapFactory.decodeResource(getResources(), R.drawable.rook);
+        Bitmap prom_rook = BitmapFactory.decodeResource(getResources(), R.drawable.prom_rook);
+        Bitmap bishop = BitmapFactory.decodeResource(getResources(), R.drawable.bishop);
+        Bitmap prom_bishop = BitmapFactory.decodeResource(getResources(), R.drawable.prom_bishop);
+        Bitmap goldgen = BitmapFactory.decodeResource(getResources(), R.drawable.goldgen);
+        Bitmap silvergen = BitmapFactory.decodeResource(getResources(), R.drawable.silvergen);
+        Bitmap prom_silver = BitmapFactory.decodeResource(getResources(), R.drawable.prom_silver);
+        Bitmap knight = BitmapFactory.decodeResource(getResources(), R.drawable.knight);
+        Bitmap prom_knight = BitmapFactory.decodeResource(getResources(), R.drawable.prom_knight);
+        Bitmap prom_lance = BitmapFactory.decodeResource(getResources(), R.drawable.prom_lance);
         Bitmap pawn = BitmapFactory.decodeResource(getResources(), R.drawable.pawn);
-        Bitmap lance = BitmapFactory.decodeResource(getResources(), R.drawable.lance);
+        Bitmap prom_pawn = BitmapFactory.decodeResource(getResources(), R.drawable.prom_pawn);
         // Load more bitmaps as needed
         int targetRow = 6;
 
