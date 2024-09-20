@@ -3,6 +3,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     android:orientation="horizontal">
 
     <LinearLayout
@@ -33,7 +34,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="English/Japanese" />
+                android:text="English/Japanese"
+                android:textColor="#797171" />
 
         </LinearLayout>
 
@@ -93,7 +95,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:text="29:48"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -104,6 +107,15 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvP1time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="29:08"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/tvP1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -111,13 +123,6 @@
                 android:text="Player 1"
                 android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/tvP1time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="29:08"
-                android:textSize="20sp" />
         </LinearLayout>
 
     </LinearLayout>
