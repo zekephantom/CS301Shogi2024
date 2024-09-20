@@ -118,28 +118,29 @@ public class DrawingThread extends Thread {
         Log.i("cellSize", "Celldim: "+cellDimensions);
 
         // Initializing colors used
-        Paint paintBorders = new Paint();
+        Paint paintBlack = new Paint();
         Paint paintBackground = new Paint();
         Paint paintCapturedField = new Paint();
-        paintBorders.setColor(Color.BLACK);
-        paintBorders.setStrokeWidth(4);
-        paintBackground.setColor(0x5EFF7800);
+        paintBlack.setColor(Color.BLACK);
+        paintBlack.setStrokeWidth(4);
+        paintBackground.setColor(0xFF926211);
         paintCapturedField.setColor(0xd3d3d3d3);
 
-
-        // add background color
+        // add background
+        canvas.drawRect(0,0,width,height, paintBlack);
+        // add background color for board
         canvas.drawRect(cellDimensions,0, cellDimensions+fieldDimensions, fieldDimensions, paintBackground);
 
         // Draw vertical lines
         for (int i = 1; i <= 10; i++) { // start at 1-10 when adding captured pieces
             float x = i * cellDimensions;
-            canvas.drawLine(x, 0, x, fieldDimensions, paintBorders);
+            canvas.drawLine(x, 0, x, fieldDimensions, paintBlack);
         }
 
         // Draw horizontal lines
         for (int i = 0; i <= 9; i++) {
             float y = i * cellDimensions;
-            canvas.drawLine(cellDimensions, y, cellDimensions+fieldDimensions, y, paintBorders);
+            canvas.drawLine(cellDimensions, y, cellDimensions+fieldDimensions, y, paintBlack);
         }
 
         // draw fields for captured pieces
