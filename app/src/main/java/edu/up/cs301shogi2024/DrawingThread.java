@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * External Citation
  * Date: 16 September 2024
- * Problem: Recommended to use the Thread class for future developments
+ * Problem: Recommended to use the Thread class and synchronized() block for future developments
  * Resource: ChatGPT
  * Solution: Used the example code
  * */
