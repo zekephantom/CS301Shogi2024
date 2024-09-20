@@ -2,6 +2,7 @@ package edu.up.cs301shogi2024;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -39,7 +40,7 @@ public class ShogiBoard extends SurfaceView implements SurfaceHolder.Callback {
         Bitmap pawn = BitmapFactory.decodeResource(getResources(), R.drawable.pawn);
         Bitmap prom_pawn = BitmapFactory.decodeResource(getResources(), R.drawable.prom_pawn);
 
-
+        // bottom side players pieces
         gamePieces.add(new GamePiece(pawn, 6, 0));
         gamePieces.add(new GamePiece(pawn, 6, 1));
         gamePieces.add(new GamePiece(pawn, 5, 2));
@@ -49,8 +50,6 @@ public class ShogiBoard extends SurfaceView implements SurfaceHolder.Callback {
         gamePieces.add(new GamePiece(pawn, 5, 6));
         gamePieces.add(new GamePiece(pawn, 6, 7));
         gamePieces.add(new GamePiece(pawn, 6, 8));
-
-        // Create GamePiece instances and add them to the list
         gamePieces.add(new GamePiece(lance, 8, 0));
         gamePieces.add(new GamePiece(lance, 8, 8));
         gamePieces.add(new GamePiece(prom_knight, 2, 2));
@@ -62,6 +61,27 @@ public class ShogiBoard extends SurfaceView implements SurfaceHolder.Callback {
         gamePieces.add(new GamePiece(kinglower, 8, 4));
         gamePieces.add(new GamePiece(bishop, 5, 3));
         gamePieces.add(new GamePiece(rook, 7, 7));
+
+        // top side players pieces
+        gamePieces.add(new GamePiece(enemy(pawn), 2, 0));
+        gamePieces.add(new GamePiece(enemy(pawn), 2, 1));
+        gamePieces.add(new GamePiece(enemy(pawn), 2, 3));
+        gamePieces.add(new GamePiece(enemy(pawn), 3, 4));
+        gamePieces.add(new GamePiece(enemy(pawn), 2, 5));
+        gamePieces.add(new GamePiece(enemy(pawn), 2, 6));
+        gamePieces.add(new GamePiece(enemy(pawn), 2, 7));
+        gamePieces.add(new GamePiece(enemy(pawn), 2, 8));
+        gamePieces.add(new GamePiece(enemy(lance), 0, 0));
+        gamePieces.add(new GamePiece(enemy(lance), 0, 8));
+        gamePieces.add(new GamePiece(enemy(knight), 0, 1));
+        gamePieces.add(new GamePiece(enemy(knight), 0, 7));
+        gamePieces.add(new GamePiece(enemy(silvergen), 1, 2));
+        gamePieces.add(new GamePiece(enemy(silvergen), 1, 6));
+        gamePieces.add(new GamePiece(enemy(goldgen), 1, 4));
+        gamePieces.add(new GamePiece(enemy(goldgen), 1, 5));
+        gamePieces.add(new GamePiece(enemy(kinglower), 0, 4));
+        gamePieces.add(new GamePiece(enemy(bishop), 1, 7));
+        gamePieces.add(new GamePiece(enemy(rook), 1, 3));
     }
 
     @Override
@@ -94,5 +114,21 @@ public class ShogiBoard extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
         // Handle surface changes if necessary
+    }
+
+    /**
+     External Citation
+        Date: 19 September 2024
+        Problem: Couldn't figure out how to rotate a bitmap
+        Resource:
+        https://stackoverflow.com/a/29982596
+     Solution: I used the example code from this answer.
+     */
+    // rotates bitmap 180 degrees to be used as a "enemy" piece
+    public static Bitmap enemy(Bitmap source)
+    {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(180);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
 }
