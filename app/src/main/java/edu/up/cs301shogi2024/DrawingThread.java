@@ -22,6 +22,7 @@ public class DrawingThread extends Thread {
     private float cellHeight;
     private float cellDimensions;
     private float fieldDimensions;
+    private float capturedFieldRadius;
 
     public DrawingThread(SurfaceHolder holder, List<GamePiece> gamePieces) {
         this.surfaceHolder = holder;
@@ -100,6 +101,8 @@ public class DrawingThread extends Thread {
         // uses the value that will make the chess board fit proper while still being squared
         cellDimensions = Math.min(cellWidth, cellHeight);
 
+        capturedFieldRadius = (float) (0.4*cellDimensions);
+
         fieldDimensions = cellDimensions*9;
 
         // debugging
@@ -107,11 +110,15 @@ public class DrawingThread extends Thread {
         Log.i("cellSize", "Cellheight: "+cellHeight);
         Log.i("cellSize", "Celldim: "+cellDimensions);
 
+        // Initializing colors used
         Paint paintBorders = new Paint();
         Paint paintBackground = new Paint();
+        Paint paintCapturedField = new Paint();
         paintBorders.setColor(Color.BLACK);
         paintBorders.setStrokeWidth(4);
         paintBackground.setColor(0x5EFF7800);
+        paintCapturedField.setColor(0xd3d3d3d3);
+
 
         // add background color
         canvas.drawRect(cellDimensions,0, cellDimensions+fieldDimensions, fieldDimensions, paintBackground);
@@ -129,7 +136,18 @@ public class DrawingThread extends Thread {
         }
 
         // draw fields for captured pieces
-
+        // Player 2
+        for (int i = 0; i < 7; i++){
+            float x = (float) 0.5 * cellDimensions;
+            float y = (float) 0.5 * cellDimensions + i * cellDimensions;
+            canvas.drawCircle(x,y,capturedFieldRadius, paintCapturedField);
+        }
+        // Player 1
+        for (int i = 2; i < 9; i++){
+            float x = (float) 10.5 * cellDimensions;
+            float y = (float) 0.5 * cellDimensions + i * cellDimensions;
+            canvas.drawCircle(x,y,capturedFieldRadius, paintCapturedField);
+        }
 
 
         // Scale bitmaps if necessary
