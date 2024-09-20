@@ -26,6 +26,7 @@ public class DrawingThread extends Thread {
     private final Object lock = new Object();
 
     private List<GamePiece> gamePieces;
+    private List<GamePiece> capturedPieces;
     private List<Bitmap> scaledBitmaps;
     private float cellWidth;
     private float cellHeight;
@@ -33,9 +34,10 @@ public class DrawingThread extends Thread {
     private float fieldDimensions;
     private float capturedFieldRadius;
 
-    public DrawingThread(SurfaceHolder holder, List<GamePiece> gamePieces) {
+    public DrawingThread(SurfaceHolder holder, List<GamePiece> gamePieces, List<GamePiece> capturedPieces) {
         this.surfaceHolder = holder;
         this.gamePieces = gamePieces;
+        this.capturedPieces = capturedPieces;
         this.scaledBitmaps = new ArrayList<>();
     }
 
@@ -114,9 +116,11 @@ public class DrawingThread extends Thread {
         fieldDimensions = cellDimensions*9;
 
         // debugging
+        /*
         Log.i("cellSize", "Cellwidth: "+cellWidth);
         Log.i("cellSize", "Cellheight: "+cellHeight);
         Log.i("cellSize", "Celldim: "+cellDimensions);
+        */
 
         // Initializing colors used
         Paint paintBlack = new Paint();
@@ -125,7 +129,7 @@ public class DrawingThread extends Thread {
         paintBlack.setColor(Color.BLACK);
         paintBlack.setStrokeWidth(4);
         paintBackground.setColor(0xFF926211);
-        paintCapturedField.setColor(0xd3d3d3d3);
+        paintCapturedField.setColor(0xa3d3d3d3);
 
         // add background
         canvas.drawRect(0,0,width,height, paintBlack);
@@ -185,7 +189,28 @@ public class DrawingThread extends Thread {
                 float top = row * cellDimensions;
 
                 // Draw the Bitmap on the canvas
-                canvas.drawBitmap(scaledBitmap, cellDimensions+left, top, null);
+                canvas.drawBitmap(scaledBitmap, cellDimensions+left, top, null); // this has to be changed if captured and game Pieces are in on list
+            }
+        }
+
+        // trying to have seperate GamePiece variable for capturePieces
+        synchronized (capturedPieces) {
+            for (int i = 0; i < capturedPieces.size(); i++) {
+                GamePiece piece = capturedPieces.get(i);
+                Bitmap scaledBitmap = scaledBitmaps.get(i);
+
+                // Ensure the position is within bounds --- is this necessary
+
+                // Calculate the position to draw the Bitmap
+                float left;
+                float top = piece.getRow() * cellDimensions;
+
+                // check what section of captured player it is
+                if(piece.getCol() == 1) left = (float) 10 * cellDimensions;
+                else left = 0;
+
+                // Draw the Bitmap on the canvas
+                canvas.drawBitmap(scaledBitmap, left, top, null);
             }
         }
     }
@@ -195,6 +220,13 @@ public class DrawingThread extends Thread {
             scaledBitmaps.clear();
             synchronized (gamePieces) {
                 for (GamePiece piece : gamePieces) {
+                    Bitmap scaledBitmap = Bitmap.createScaledBitmap(piece.getBitmap(), (int) cellDimensions, (int) cellDimensions, true);
+                    scaledBitmaps.add(scaledBitmap);
+                }
+            }
+
+            synchronized (capturedPieces) {
+                for (GamePiece piece : capturedPieces) {
                     Bitmap scaledBitmap = Bitmap.createScaledBitmap(piece.getBitmap(), (int) cellDimensions, (int) cellDimensions, true);
                     scaledBitmaps.add(scaledBitmap);
                 }

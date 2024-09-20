@@ -13,6 +13,8 @@ import java.util.*;
 public class ShogiBoard extends SurfaceView implements SurfaceHolder.Callback {
     private DrawingThread drawingThread;
     private List<GamePiece> gamePieces;
+    private List<GamePiece> capturedPieces;
+
 
     public ShogiBoard(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -20,6 +22,7 @@ public class ShogiBoard extends SurfaceView implements SurfaceHolder.Callback {
 
         // Initialize the list of game pieces
         gamePieces = new ArrayList<>();
+        capturedPieces = new ArrayList<>();
         loadGamePieces(context);
     }
 
@@ -39,6 +42,8 @@ public class ShogiBoard extends SurfaceView implements SurfaceHolder.Callback {
         Bitmap prom_lance = BitmapFactory.decodeResource(getResources(), R.drawable.prom_lance);
         Bitmap pawn = BitmapFactory.decodeResource(getResources(), R.drawable.pawn);
         Bitmap prom_pawn = BitmapFactory.decodeResource(getResources(), R.drawable.prom_pawn);
+
+
 
         // bottom side players pieces
         gamePieces.add(new GamePiece(pawn, 6, 0));
@@ -82,12 +87,16 @@ public class ShogiBoard extends SurfaceView implements SurfaceHolder.Callback {
         gamePieces.add(new GamePiece(enemy(kinglower), 0, 4));
         gamePieces.add(new GamePiece(enemy(bishop), 1, 7));
         gamePieces.add(new GamePiece(enemy(rook), 1, 3));
+
+        // captured pieces (row: maybe 0 for left/upper pieces and 1 for right/lower pieces
+            // future automate that specific piece automatically has location specified
+        capturedPieces.add(new GamePiece(pawn, 8, 1));
     }
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         // Start the drawing thread and pass the list of game pieces
-        drawingThread = new DrawingThread(getHolder(), gamePieces);
+        drawingThread = new DrawingThread(getHolder(), gamePieces, capturedPieces);
         drawingThread.setRunning(true);
         drawingThread.start();
         drawingThread.requestRedraw(); // Initial draw
