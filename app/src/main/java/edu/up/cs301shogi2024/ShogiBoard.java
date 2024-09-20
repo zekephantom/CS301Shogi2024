@@ -34,19 +34,34 @@ public class ShogiBoard extends SurfaceView implements SurfaceHolder.Callback {
         Bitmap prom_silver = BitmapFactory.decodeResource(getResources(), R.drawable.prom_silver);
         Bitmap knight = BitmapFactory.decodeResource(getResources(), R.drawable.knight);
         Bitmap prom_knight = BitmapFactory.decodeResource(getResources(), R.drawable.prom_knight);
+        Bitmap lance = BitmapFactory.decodeResource(getResources(), R.drawable.lance);
         Bitmap prom_lance = BitmapFactory.decodeResource(getResources(), R.drawable.prom_lance);
         Bitmap pawn = BitmapFactory.decodeResource(getResources(), R.drawable.pawn);
         Bitmap prom_pawn = BitmapFactory.decodeResource(getResources(), R.drawable.prom_pawn);
-        // Load more bitmaps as needed
-        int targetRow = 6;
 
-        for(int col = 0; col < 9; col++){
-            gamePieces.add(new GamePiece(pawn, targetRow, col));
-        }
+
+        gamePieces.add(new GamePiece(pawn, 6, 0));
+        gamePieces.add(new GamePiece(pawn, 6, 1));
+        gamePieces.add(new GamePiece(pawn, 5, 2));
+        gamePieces.add(new GamePiece(pawn, 6, 3));
+        gamePieces.add(new GamePiece(pawn, 6, 4));
+        gamePieces.add(new GamePiece(pawn, 6, 5));
+        gamePieces.add(new GamePiece(pawn, 5, 6));
+        gamePieces.add(new GamePiece(pawn, 6, 7));
+        gamePieces.add(new GamePiece(pawn, 6, 8));
+
         // Create GamePiece instances and add them to the list
         gamePieces.add(new GamePiece(lance, 8, 0));
         gamePieces.add(new GamePiece(lance, 8, 8));
-        //  NOTE: Add more pieces with their initial positions
+        gamePieces.add(new GamePiece(prom_knight, 2, 2));
+        gamePieces.add(new GamePiece(knight, 8, 7));
+        gamePieces.add(new GamePiece(silvergen, 8, 2));
+        gamePieces.add(new GamePiece(silvergen, 8, 6));
+        gamePieces.add(new GamePiece(goldgen, 8, 3));
+        gamePieces.add(new GamePiece(goldgen, 8, 5));
+        gamePieces.add(new GamePiece(kinglower, 8, 4));
+        gamePieces.add(new GamePiece(bishop, 5, 3));
+        gamePieces.add(new GamePiece(rook, 7, 7));
     }
 
     @Override
