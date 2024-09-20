@@ -9,8 +9,8 @@ import android.view.SurfaceView;
 import android.graphics.Bitmap;
 import java.util.*;
 
-public class ShogiBoard extends SurfaceView implements SurfaceHolder.Callback {
 
+public class ShogiBoard extends SurfaceView implements SurfaceHolder.Callback {
     private DrawingThread drawingThread;
     private List<GamePiece> gamePieces;
 
@@ -117,12 +117,12 @@ public class ShogiBoard extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     /**
-     External Citation
-     Date: 19 September 2024
-     Problem: Couldn't figure out how to rotate a bitmap
-     Resource:
-     https://stackoverflow.com/a/29982596
-     Solution: I used the example code from this answer.
+     *External Citation
+     *Date: 19 September 2024
+     *Problem: Couldn't figure out how to rotate a bitmap
+     *Resource:
+     * https://stackoverflow.com/a/29982596
+     *Solution: I used the example code from this answer.
      */
     // rotates bitmap 180 degrees to be used as a "enemy" piece
     public static Bitmap enemy(Bitmap source)
