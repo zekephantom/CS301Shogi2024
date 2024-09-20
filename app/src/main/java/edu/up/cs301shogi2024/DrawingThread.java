@@ -10,6 +10,13 @@ import android.view.SurfaceHolder;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * External Citation
+ * Date: 16 September 2024
+ * Problem: Recommended to use the Thread class for future developments
+ * Resource: ChatGPT
+ * Solution: Used the example code
+ * */
 public class DrawingThread extends Thread {
     private SurfaceHolder surfaceHolder;
     private boolean running = false;
@@ -154,6 +161,13 @@ public class DrawingThread extends Thread {
         // Scale bitmaps if necessary
         scaleBitmapsIfNeeded();
 
+        /*
+         * External Citation
+         * Date: 16 September 2024
+         * Problem: could not figure out how to load game pieces
+         * Resource: ChatGPT
+         * Solution: I used their example code.
+         * */
         // Draw all game pieces
         synchronized (gamePieces) {
             for (int i = 0; i < gamePieces.size(); i++) {
