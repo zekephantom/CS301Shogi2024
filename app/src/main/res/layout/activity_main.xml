@@ -20,14 +20,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center|top"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tvWelcome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Welcome to Shogi!"
-                android:textSize="20sp" />
+                android:text="Shogi"
+                android:textAllCaps="false"
+                android:textSize="40sp"
+                android:textStyle="bold|italic" />
 
             <Switch
                 android:id="@+id/swLanguage"
@@ -35,7 +38,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="English/Japanese"
-                android:textColor="#797171" />
+                android:textColor="#797171"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -50,7 +54,8 @@
                 android:id="@+id/butQuit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Quit" />
+                android:text="Quit"
+                android:textSize="20sp" />
         </LinearLayout>
 
     </LinearLayout>
@@ -66,42 +71,49 @@
 
     <LinearLayout
         android:id="@+id/rightTimeBar"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginTop="20sp"
         android:layout_marginRight="20sp"
         android:layout_marginBottom="20sp"
-        android:layout_weight="2"
+        android:layout_weight="1.5"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:gravity="center|top"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tvP2"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
+                android:background="#80FFFFFF"
                 android:text="Player 2"
-                android:textSize="20sp" />
+                android:textAlignment="center"
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/tvP2time"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
+                android:background="#80FFFFFF"
                 android:text="29:48"
-                android:textSize="20sp"
+                android:textAlignment="center"
+                android:textSize="30sp"
                 android:textStyle="bold" />
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:gravity="bottom|center"
             android:orientation="vertical">
@@ -112,7 +124,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:text="29:08"
-                android:textSize="20sp"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -121,7 +133,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:text="Player 1"
-                android:textSize="20sp" />
+                android:textSize="30sp" />
 
         </LinearLayout>
 
