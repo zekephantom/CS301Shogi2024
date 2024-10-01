@@ -28,13 +28,13 @@ public class ShogiBoard extends SurfaceView implements SurfaceHolder.Callback {
 
     private void loadGamePieces(Context context) {
         // Load Bitmaps for different pieces
-        Bitmap kinglower = BitmapFactory.decodeResource(getResources(), R.drawable.kinglower);
+        Bitmap kingLower = BitmapFactory.decodeResource(getResources(), R.drawable.kinglower);
         Bitmap rook = BitmapFactory.decodeResource(getResources(), R.drawable.rook);
         Bitmap prom_rook = BitmapFactory.decodeResource(getResources(), R.drawable.prom_rook);
         Bitmap bishop = BitmapFactory.decodeResource(getResources(), R.drawable.bishop);
         Bitmap prom_bishop = BitmapFactory.decodeResource(getResources(), R.drawable.prom_bishop);
-        Bitmap goldgen = BitmapFactory.decodeResource(getResources(), R.drawable.goldgen);
-        Bitmap silvergen = BitmapFactory.decodeResource(getResources(), R.drawable.silvergen);
+        Bitmap goldGen = BitmapFactory.decodeResource(getResources(), R.drawable.goldgen);
+        Bitmap silverGen = BitmapFactory.decodeResource(getResources(), R.drawable.silvergen);
         Bitmap prom_silver = BitmapFactory.decodeResource(getResources(), R.drawable.prom_silver);
         Bitmap knight = BitmapFactory.decodeResource(getResources(), R.drawable.knight);
         Bitmap prom_knight = BitmapFactory.decodeResource(getResources(), R.drawable.prom_knight);
@@ -42,7 +42,6 @@ public class ShogiBoard extends SurfaceView implements SurfaceHolder.Callback {
         Bitmap prom_lance = BitmapFactory.decodeResource(getResources(), R.drawable.prom_lance);
         Bitmap pawn = BitmapFactory.decodeResource(getResources(), R.drawable.pawn);
         Bitmap prom_pawn = BitmapFactory.decodeResource(getResources(), R.drawable.prom_pawn);
-
 
 
         // bottom side players pieces
@@ -59,11 +58,11 @@ public class ShogiBoard extends SurfaceView implements SurfaceHolder.Callback {
         gamePieces.add(new GamePiece(lance, 8, 8));
         gamePieces.add(new GamePiece(prom_knight, 2, 2));
         gamePieces.add(new GamePiece(knight, 8, 7));
-        gamePieces.add(new GamePiece(silvergen, 8, 2));
-        gamePieces.add(new GamePiece(silvergen, 8, 6));
-        gamePieces.add(new GamePiece(goldgen, 8, 3));
-        gamePieces.add(new GamePiece(goldgen, 8, 5));
-        gamePieces.add(new GamePiece(kinglower, 8, 4));
+        gamePieces.add(new GamePiece(silverGen, 8, 2));
+        gamePieces.add(new GamePiece(silverGen, 8, 6));
+        gamePieces.add(new GamePiece(goldGen, 8, 3));
+        gamePieces.add(new GamePiece(goldGen, 8, 5));
+        gamePieces.add(new GamePiece(kingLower, 8, 4));
         gamePieces.add(new GamePiece(bishop, 5, 3));
         gamePieces.add(new GamePiece(rook, 7, 7));
 
@@ -80,11 +79,11 @@ public class ShogiBoard extends SurfaceView implements SurfaceHolder.Callback {
         gamePieces.add(new GamePiece(enemy(lance), 0, 8));
         gamePieces.add(new GamePiece(enemy(knight), 0, 1));
         gamePieces.add(new GamePiece(enemy(knight), 0, 7));
-        gamePieces.add(new GamePiece(enemy(silvergen), 1, 2));
-        gamePieces.add(new GamePiece(enemy(silvergen), 1, 6));
-        gamePieces.add(new GamePiece(enemy(goldgen), 1, 4));
-        gamePieces.add(new GamePiece(enemy(goldgen), 1, 5));
-        gamePieces.add(new GamePiece(enemy(kinglower), 0, 4));
+        gamePieces.add(new GamePiece(enemy(silverGen), 1, 2));
+        gamePieces.add(new GamePiece(enemy(silverGen), 1, 6));
+        gamePieces.add(new GamePiece(enemy(goldGen), 1, 4));
+        gamePieces.add(new GamePiece(enemy(goldGen), 1, 5));
+        gamePieces.add(new GamePiece(enemy(kingLower), 0, 4));
         gamePieces.add(new GamePiece(enemy(bishop), 1, 7));
         gamePieces.add(new GamePiece(enemy(rook), 1, 3));
 
@@ -129,8 +128,7 @@ public class ShogiBoard extends SurfaceView implements SurfaceHolder.Callback {
      *External Citation
      *Date: 19 September 2024
      *Problem: Couldn't figure out how to rotate a bitmap
-     *Resource:
-     * https://stackoverflow.com/a/29982596
+     *Resource: https://stackoverflow.com/a/29982596
      *Solution: I used the example code from this answer.
      */
     // rotates bitmap 180 degrees to be used as a "enemy" piece
